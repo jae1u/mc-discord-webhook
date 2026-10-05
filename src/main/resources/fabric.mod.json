@@ -3,26 +3,26 @@
   "id": "${id}",
   "version": "${version}",
   "name": "${name}",
-  "description": "This is an example description! Tell everyone what your mod is about!",
+  "description": "Sends server messages to a Discord webhook.",
   "authors": [
-    "Me!"
+    "PotatoY"
   ],
   "contact": {
-    "homepage": "https://stonecutter.kikugie.dev/",
-    "sources": "https://codeberg.org/stonecutter/template-fabric"
+    "homepage": "https://github.com/jae1u/mc-discord-webhook",
+    "sources": "https://github.com/jae1u/mc-discord-webhook"
   },
   "license": "CC0-1.0",
-  "icon": "assets/template/icon.png",
+  "icon": "assets/mcdiscordwebhook/icon.png",
   "environment": "*",
   "entrypoints": {
     "main": [
-      "com.example.TemplateModFabric"
+      "kr.potatoy.mcdiscordwebhook.McDiscordWebhookFabric"
     ]
   },
   "mixins": [
-    "template.mixins.json"
+    "mcdiscordwebhook.mixins.json"
   ],
-  "accessWidener": "template.ct",
+  "accessWidener": "mcdiscordwebhook.ct",
   "depends": {
     "fabricloader": ">=${loader}",
     "minecraft": "${minecraft}"

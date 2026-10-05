@@ -1,4 +1,4 @@
-package com.example;
+package kr.potatoy.mcdiscordwebhook;
 
 // Similar to this you can implement loader-specific functionality
 // in a way that works on either mod loader.

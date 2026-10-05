@@ -1,11 +1,11 @@
-package com.example;
+package kr.potatoy.mcdiscordwebhook;
 
 //? if fabric {
 import net.fabricmc.api.ModInitializer;
 
-import static com.example.TemplateModCommon.*;
+import static kr.potatoy.mcdiscordwebhook.McDiscordWebhook.*;
 
-public class TemplateModFabric implements ModInitializer {
+public class McDiscordWebhookFabric implements ModInitializer {
     @Override
     public void onInitialize() {
         // This code runs as soon as Minecraft is in a mod-load-ready state.
@@ -15,7 +15,7 @@ public class TemplateModFabric implements ModInitializer {
         LOGGER.info("Hello Fabric world!");
 
         //? if !release
-        LOGGER.warn("I'm still a template!");
+        //LOGGER.warn("I'm still a template!");
 
         //? if fapi: <0.100
         //LOGGER.info("Fabric API is old on this version");

@@ -1,15 +1,15 @@
-package com.example;
+package kr.potatoy.mcdiscordwebhook;
 
 //? if neoforge {
 /*import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
 
-import static com.example.TemplateModCommon.*;
+import static kr.potatoy.mcdiscordwebhook.McDiscordWebhook.*;
 
-@Mod("template")
-public class TemplateModNeoForge {
-    public TemplateModNeoForge(IEventBus modEventBus, ModContainer modContainer) {
+@Mod("mcdiscordwebhook")
+public class McDiscordWebhookNeoForge {
+    public McDiscordWebhookNeoForge(IEventBus modEventBus, ModContainer modContainer) {
         LOGGER.info("Hello NeoForge world!");
 
         //? if !release

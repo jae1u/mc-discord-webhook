@@ -7,15 +7,15 @@ loaderVersion="[1,)"
 modId = "${id}"
 displayName = "${name}"
 version = "${version}"
-authors = "Me!"
-description = "This is an example description! Tell everyone what your mod is about!"
+authors = "PotatoY"
+description = "Sends server messages to a Discord webhook."
 
-logoFile = "assets/template/icon.png"
+logoFile = "assets/mcdiscordwebhook/icon.png"
 #displayURL = "..."
 #issueTrackerUrl = "..."
 
 [[mixins]]
-config = "template.mixins.json"
+config = "mcdiscordwebhook.mixins.json"
 
 [[dependencies.${id}]]
 modId = "minecraft"
