@@ -5,7 +5,8 @@ package kr.potatoy.mcdiscordwebhook;
 public sealed interface ModLoaderAccess {
     ModLoaderAccess INSTANCE =
         /*? if fabric{*/new FabricLoaderAccess();
-        /*?} elif neoforge *///new NeoForgeLoaderAccess();
+        /*?} elif neoforge {*//*new NeoForgeLoaderAccess();
+        *//*?} elif forge *///new ForgeLoaderAccess();
 
     boolean isClient();
     boolean isServer();
@@ -39,6 +40,26 @@ public sealed interface ModLoaderAccess {
         private net.neoforged.fml.loading.LoadingModList mods =
             /^? if >=1.21.9 {^/net.neoforged.fml.loading.FMLLoader.getCurrent().getLoadingModList();
             /^?} else^///net.neoforged.fml.loading.FMLLoader.getLoadingModList();
+
+        @Override
+        public boolean isClient() {
+            return dist.isClient();
+        }
+
+        @Override
+        public boolean isServer() {
+            return dist.isDedicatedServer();
+        }
+
+        @Override
+        public boolean isModLoaded(String id) {
+            return mods.getModFileById(id) != null;
+        }
+    }
+    *///?} elif forge {
+    /*final class ForgeLoaderAccess implements ModLoaderAccess {
+        private net.minecraftforge.api.distmarker.Dist dist = net.minecraftforge.fml.loading.FMLEnvironment.dist;
+        private net.minecraftforge.fml.loading.LoadingModList mods = net.minecraftforge.fml.loading.FMLLoader.getLoadingModList();
 
         @Override
         public boolean isClient() {

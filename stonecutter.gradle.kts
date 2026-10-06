@@ -15,7 +15,7 @@ stonecutter parameters {
 
     // Adds constants to Stonecutter comments (i.e. for `//? if fabric {...`)
     constants {
-        match(loader, "fabric", "neoforge")
+        match(loader, "fabric", "neoforge", "forge")
     }
 
     swaps["mod_version"] = "\"${properties.get<String>("mod.version")}\";"

@@ -1,7 +1,7 @@
 license = "CC0-1.0"
 
 modLoader="javafml"
-loaderVersion="[1,)"
+loaderVersion="[47,)"
 
 [[mods]]
 modId = "${id}"
@@ -13,13 +13,11 @@ description = "Sends server messages to a Discord webhook."
 logoFile = "assets/mcdiscordwebhook/icon.png"
 #displayURL = "..."
 #issueTrackerUrl = "..."
-
-[[mixins]]
-config = "mcdiscordwebhook.mixins.json"
+displayTest = "IGNORE_SERVER_VERSION"
 
 [[dependencies.${id}]]
 modId = "minecraft"
-type = "required"
+mandatory = true
 versionRange = "${minecraft}"
 ordering = "NONE"
 side = "BOTH"

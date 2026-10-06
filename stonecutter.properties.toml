@@ -7,6 +7,15 @@ mod.version = "0.1.0"
 deps.fabric_loader = "0.19.5"
 loomx.loom_version = "1.18-SNAPSHOT"
 
+["1.20.1"]
+mod.mc_releases = ["1.20.1"]
+
+
+[forge."1.20.1"]
+mod.mc_compat = "[1.20.1]"
+deps.forge = "1.20.1-47.4.0"
+
+
 ["1.21.1"]
 # List of releases to be marked compatible on Modrinth/Curseforge
 mod.mc_releases = ["1.21", "1.21.1"]

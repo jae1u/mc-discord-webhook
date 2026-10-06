@@ -1,10 +1,10 @@
 plugins {
-    id("net.neoforged.moddev") version "2.0.147"
+    id("net.neoforged.moddev.legacyforge") version "2.0.147"
     id("neoforge-mutex")
 }
 
 version = "${property("mod.version")}+${sc.current.version}"
-base.archivesName = "${property("mod.id") as String}-neoforge"
+base.archivesName = "${property("mod.id") as String}-forge"
 
 val requiredJava = when {
     sc.current.parsed >= "26.1" -> JavaVersion.VERSION_25
@@ -28,11 +28,11 @@ repositories {
 }
 
 dependencies {
-
+    annotationProcessor("org.spongepowered:mixin:0.8.5:processor")
 }
 
-neoForge {
-    version = property("deps.neo_loader") as String
+legacyForge {
+    version = property("deps.forge") as String
 
     mods {
         register("mcdiscordwebhook") {
@@ -51,6 +51,11 @@ neoForge {
             server()
         }
     }
+}
+
+mixin {
+    add(sourceSets.main.get(), "mcdiscordwebhook.refmap.json")
+    config("mcdiscordwebhook.mixins.json")
 }
 
 java {
@@ -78,16 +83,23 @@ tasks {
             register("minecraft", sc.properties["mod.mc_compat"])
         }
 
-        filesMatching("META-INF/neoforge.mods.toml") { expand(props) }
+        filesMatching("META-INF/mods.toml") { expand(props) }
 
         val mixinJava = "JAVA_${requiredJava.majorVersion}"
-        filesMatching("*.mixins.json") { expand("java" to mixinJava) }
+        filesMatching("*.mixins.json") {
+            expand("java" to mixinJava)
+            filter { it.replace("\"required\": true,", "\"required\": true, \"minVersion\": \"0.8\", \"refmap\": \"mcdiscordwebhook.refmap.json\",") }
+        }
 
-        exclude("fabric.mod.json", "*.ct", "*.classtweaker")
+        exclude("fabric.mod.json", "META-INF/neoforge.mods.toml", "*.ct", "*.classtweaker")
     }
 
     named("createMinecraftArtifacts") {
         dependsOn("stonecutterGenerate")
+    }
+
+    jar {
+        manifest.attributes("MixinConfigs" to "mcdiscordwebhook.mixins.json")
     }
 
     // Includes the license file in the built mod
@@ -102,7 +114,7 @@ tasks {
         description = "Builds mod jars and copies results to `build/libs/{mod version}/`"
 
         inputs.property("version", project.property("mod.version"))
-        from(jar.flatMap { it.archiveFile }, named<Jar>("sourcesJar").flatMap { it.archiveFile })
+        from(named<Jar>("reobfJar").flatMap { it.archiveFile }, named<Jar>("sourcesJar").flatMap { it.archiveFile })
         into(rootProject.layout.buildDirectory.file("libs/${project.property("mod.version")}"))
     }
 }
