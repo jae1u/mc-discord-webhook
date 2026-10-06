@@ -5,7 +5,8 @@
   "mixins": [
     "ExampleMixin",
     "DedicatedServerMixin",
-    "PlayerListMixin"
+    "PlayerListMixin",
+    "ServerGamePacketListenerImplMixin"
   ],
   "injectors": {
     "defaultRequire": 1
