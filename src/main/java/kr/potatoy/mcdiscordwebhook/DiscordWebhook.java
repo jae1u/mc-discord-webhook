@@ -1,5 +1,6 @@
 package kr.potatoy.mcdiscordwebhook;
 
+import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
@@ -27,7 +28,7 @@ public final class DiscordWebhook {
     private static final URI URL = readUrl();
     private static final HttpClient HTTP = HttpClient.newBuilder().connectTimeout(TIMEOUT).build();
     private static final ExecutorService SENDER = Executors.newSingleThreadExecutor(
-        Thread.ofPlatform().name("mcdiscordwebhook-sender").daemon().factory());
+        new ThreadFactoryBuilder().setNameFormat("mcdiscordwebhook-sender").setDaemon(true).build());
 
     static {
         if (URL == null) SENDER.shutdown();
@@ -80,7 +81,7 @@ public final class DiscordWebhook {
         IOException failure = null;
         Duration wait = Duration.ZERO;
         for (int attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
-            Thread.sleep(wait);
+            Thread.sleep(wait.toMillis());
 
             HttpResponse<Void> response;
             try {
@@ -94,7 +95,7 @@ public final class DiscordWebhook {
             int status = response.statusCode();
             if (status < 300) {
                 if (response.headers().firstValue("X-RateLimit-Remaining").orElse("").equals("0")) {
-                    Thread.sleep(seconds(response, "X-RateLimit-Reset-After"));
+                    Thread.sleep(seconds(response, "X-RateLimit-Reset-After").toMillis());
                 }
                 return;
             }
