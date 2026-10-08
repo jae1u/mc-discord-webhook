@@ -13,6 +13,7 @@ import java.net.http.HttpResponse;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.Duration;
+import java.util.Locale;
 import java.util.Properties;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -42,6 +43,9 @@ public final class DiscordWebhook {
     }
 
     public static void send(String content, String username, String avatarUrl) {
+        String name = username.toLowerCase(Locale.ROOT);
+        if (name.contains("discord") || name.contains("clyde")) return;
+
         JsonObject message = newMessage(content);
         message.addProperty("username", username);
         message.addProperty("avatar_url", avatarUrl);
