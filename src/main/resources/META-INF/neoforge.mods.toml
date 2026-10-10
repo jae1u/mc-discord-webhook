@@ -11,7 +11,7 @@ authors = "PotatoY"
 description = "Sends server messages to a Discord webhook."
 
 logoFile = "assets/mcdiscordwebhook/icon.png"
-#displayURL = "..."
+displayURL = "https://github.com/jae1u/mc-discord-webhook"
 #issueTrackerUrl = "..."
 
 [[mixins]]
