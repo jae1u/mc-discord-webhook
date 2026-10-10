@@ -11,7 +11,7 @@
     "homepage": "https://github.com/jae1u/mc-discord-webhook",
     "sources": "https://github.com/jae1u/mc-discord-webhook"
   },
-  "license": "CC0-1.0",
+  "license": "MIT",
   "icon": "assets/mcdiscordwebhook/icon.png",
   "environment": "*",
   "entrypoints": {

@@ -1,4 +1,4 @@
-license = "CC0-1.0"
+license = "MIT"
 
 modLoader="javafml"
 loaderVersion="[47,)"
