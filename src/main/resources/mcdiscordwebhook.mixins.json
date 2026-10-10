@@ -3,7 +3,6 @@
   "package": "kr.potatoy.mcdiscordwebhook.mixin",
   "compatibilityLevel": "${java}",
   "mixins": [
-    "ExampleMixin",
     "DedicatedServerMixin",
     "PlayerListMixin",
     "ServerGamePacketListenerImplMixin"
